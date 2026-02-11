@@ -1,0 +1,36 @@
+# Build output
+build/
+dist/
+*.spec
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Old versions
+GETHASH*.py
+GETHASH*.command
+GETHASH*.exe
+GETHASH_WEB*
+
+# Temporary files
+*.log
+*.tmp
+*.bak
