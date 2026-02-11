@@ -15,12 +15,23 @@ A cross-platform SHA-256 password brute-force tool with GUI support for salted h
 
 ## How to use it 
 
-### For Regular Users
+### For Regular Users (Windows & macOS)
 1. Go to [Releases](https://github.com/MichalRadovanHresko/HashCracker/releases)
-2. Download: `HashCracker.app` (macOS), `HashCracker.exe` (Windows), or `HashCracker` (Linux)
-3. Double-click and run
+2. Download the file for your system:
+   - **macOS**: Download `HashCracker-macOS.zip`
+   - **Windows**: Download `HashCracker-Windows.zip`
+3. Unzip the file
+4. Double-click the app and run
 
 Done! No Python or installation needed.
+
+### For Linux Users
+```bash
+git clone https://github.com/MichalRadovanHresko/HashCracker.git
+cd HashCracker
+pip install -r requirements.txt
+python3 HashCracker.py
+```
 
 ## Features
 

@@ -1,0 +1,67 @@
+name: Build Releases
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build-macos:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+      
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+          pip install pyinstaller
+      
+      - name: Build macOS app
+        run: python3 build_standalone.py
+      
+      - name: Create zip
+        run: |
+          cd dist
+          zip -r HashCracker-macOS.zip HashCracker.app
+      
+      - name: Upload to release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: dist/HashCracker-macOS.zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  build-windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+      
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+          pip install pyinstaller
+      
+      - name: Build Windows exe
+        run: python build_standalone.py
+      
+      - name: Create zip
+        run: |
+          cd dist
+          powershell Compress-Archive -Path HashCracker.exe -DestinationPath HashCracker-Windows.zip
+      
+      - name: Upload to release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: dist/HashCracker-Windows.zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
